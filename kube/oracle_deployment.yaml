@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: oracle-exporter
+  namespace: yourNamespace
+spec:
+  replicas: 1
+  selector:
+    matchLabels: 
+      app: oracle-exporter
+  template:
+    metadata:
+      labels:
+        app: oracle-exporter
+    spec:
+      containers:
+      - name: oracle-exporter
+        args:
+          - "--config=/opt/secrets/config.yaml"
+          - "--metrics-folder=/opt/rules"
+        image: 
+        ports:
+        - containerPort: 9101
+        volumeMounts:
+          - mountPath: /opt/secrets
+            name: oracle-secrets
+          - mountPath: /opt/rules
+            name: oracle-rules    
+      volumes:
+      - name: oracle-rules
+        configMap:
+          name: oracle-configmap
+      - name: oracle-secrets
+        secret:
+          secretName: oracle-config

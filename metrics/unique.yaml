@@ -1,0 +1,9 @@
+metrics:
+  - name: number_of_connections
+    help: The number connections to the instance
+    value: value
+    labels:
+      - team
+      - service
+    statement:
+      select '0' as value, 'team' as team, 'svc' as service FROM sys.sysprocesses

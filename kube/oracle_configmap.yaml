@@ -1,0 +1,16 @@
+apiVersion: v1
+data:
+  default_metrics.yaml: |
+    metrics:
+    - name: sessions
+      help: Gauge metric with count of sessions by status and type. (value)
+      value: value
+      labels:
+      - status
+      - type
+      statement: SELECT status, type, COUNT(*) as value FROM gv$session GROUP BY status,
+        type
+kind: ConfigMap
+metadata:
+  name: oracle-configmap
+  namespace: yourNamespace
