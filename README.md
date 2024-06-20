@@ -1,7 +1,7 @@
 
 # Multi-Target Oracle Exporter
 ## Notes:
-An Oracle SQL database exporter written in Go.
+An Oracle SQL database exporter written in Go designed for use in Kubernetes
 
 Currently only gauge metrics are used.
 
